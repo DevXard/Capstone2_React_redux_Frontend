@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# Tecnologies
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Backend
+* Node.js
+* Express
+* PostgreSQL
 
-## Available Scripts
+## Frontend
+* React.js
+* Redux
 
-In the project directory, you can run:
+# Type Of Application
 
-### `yarn start`
+> This is going to be a MobileFrendly web page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Goal 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> The goal of this application is to provide People who 
+> grow there owne food with a marketplace and costumers
+>   who whant to consume localy grown fruits, vegitables, and other.
 
-### `yarn test`
+# Demographic
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Costumers
+* People Interested in Supporting localy grown produce
+* People who would like to eat fresh from farm
 
-### `yarn build`
+### Sellers
+* People who would like to get in to Gardning or Farming
+* People with gardens or farms that would like to expand or look at diferent oportunities
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Data 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### User Data
+* Name
+* Email
+* password
+* location (as reference)
+* address (for delivery optional)
+* phone (optional)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Sellers Data
+* Name
+* Email
+* Phone
+* Password
+* address
+* location (long, lat)
+* revews
 
-### `yarn eject`
+### Products Data
+* type 
+* quantity
+* date
+* price
+* delivery avalible
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# API
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Google Maps
+> Using google maps i will load closest sellers of certin
+> 
+> product in x miles/km. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> Using Google maps will get long lat from sellers addres
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Database
 
-## Learn More
+### Schema
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Expected difficulties
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Google Api
+* Getting coordinates from address
+* Loading long lat in to google maps
 
-### Code Splitting
+# Security
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+> To be able to sell or buy an acount will be needed
 
-### Analyzing the Bundle Size
+# Functionaliry
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* Show buyers closest sellers and there Products
+* ability to search for products and get the closest on top
+* Ability to become a seller get notified when you get a purchese
 
-### Making a Progressive Web App
+# User flow
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> When someone visits the web site he will be greated with
+> a search bar and different products and see product detiles
+> People that have rgistered will have the ability to purchese items from sellers and pick them up or get delivery if avalible.
+> Users of the website will have the ability to become a seller and registeer there owne products.
+> When user is looking at details page they will be able to see the distance to the seller and get route using google maps.
