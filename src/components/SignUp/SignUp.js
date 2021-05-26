@@ -1,17 +1,24 @@
-import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import {Link, useHistory} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+
+import {signupUser, userSelector} from '../../store/slices/userSlice';
 
 const SignUp = () => {
 
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const {isSuccess} = useSelector(userSelector)
+
     const [formData, setFormData] = useState({
         username:"",
-        fullname:"",
+        name:"",
         email:"",
         password:"",
         confirm_password:"",
         phone:"",
-        address:"",
-        ciry:"",
+        street_address:"",
+        city:"",
         state:"",
         zip:"",
         
@@ -19,8 +26,17 @@ const SignUp = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        
+        if(formData.password !== formData.confirm_password) {
+            return <div>Error</div>
+        }
+        dispatch(signupUser(formData))
     }
+
+    // useEffect(() => {
+    //     if(isSuccess){
+    //         history.push('/');
+    //     }
+    // }, [isSuccess])
 
     function handleChange(e) {
         const {name, value} = e.target;
@@ -33,7 +49,7 @@ const SignUp = () => {
                 <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
                     <h1 className="mb-8 text-3xl text-center">Sign up</h1>
                     <form onSubmit={handleSubmit}>
-                    <lable>Username</lable>
+                    <label>Username</label>
                     <input 
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
@@ -41,15 +57,15 @@ const SignUp = () => {
                         value={formData.username}
                         onChange={handleChange}
                         placeholder="Username" />
-                    <lable>Full name</lable>
+                    <label>Full name</label>
                     <input 
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="fullname"
+                        name="name"
                         value={formData.fullname}
                         onChange={handleChange}
                         placeholder="Full Name" />
-                    <lable>Email</lable>
+                    <label>Email</label>
                     <input 
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
@@ -57,7 +73,7 @@ const SignUp = () => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="Email" />
-                    <lable>Password</lable>
+                    <label>Password</label>
                     <input 
                         type="password"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
@@ -65,7 +81,7 @@ const SignUp = () => {
                         value={formData.password}
                         onChange={handleChange}
                         placeholder="Password" />
-                    <lable>Confirm Password</lable>
+                    <label>Confirm Password</label>
                     <input 
                         type="password"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
@@ -73,7 +89,7 @@ const SignUp = () => {
                         value={formData.confirm_password}
                         onChange={handleChange}
                         placeholder="Confirm Password" />
-                    <lable>Phone</lable>
+                    <label>Phone</label>
                     <input 
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
@@ -81,15 +97,15 @@ const SignUp = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="Phone" />
-                    <lable>Address</lable>
+                    <label>Address</label>
                     <input 
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="address"
+                        name="street_address"
                         value={formData.address}
                         onChange={handleChange}
                         placeholder="Address" />
-                    <lable>City</lable>
+                    <label>City</label>
                     <input 
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
@@ -97,7 +113,7 @@ const SignUp = () => {
                         value={formData.city}
                         onChange={handleChange}
                         placeholder="City" />
-                    <lable>State</lable>
+                    <label>State</label>
                     <input 
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
@@ -105,7 +121,7 @@ const SignUp = () => {
                         value={formData.state}
                         onChange={handleChange}
                         placeholder="State" />
-                    <lable>Zip</lable>
+                    <label>Zip</label>
                     <input 
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
@@ -120,10 +136,10 @@ const SignUp = () => {
                     </form>
                     <div className="text-center text-sm text-grey-dark mt-4">
                         By signing up, you agree to the 
-                        <Link className="no-underline border-b border-grey-dark text-grey-dark mx-1" href="#">
+                        <Link className="no-underline border-b border-grey-dark text-grey-dark mx-1" to="#">
                             Terms of Service
                         </Link> and 
-                        <Link className="no-underline border-b border-grey-dark text-grey-dark mx-1" href="#">
+                        <Link className="no-underline border-b border-grey-dark text-grey-dark mx-1" to="#">
                             Privacy Policy
                         </Link>
                     </div>
@@ -131,7 +147,7 @@ const SignUp = () => {
 
                 <div className="text-grey-dark mt-6">
                     Already have an account? 
-                    <Link className="no-underline border-b border-blue text-blue mx-1" href="../login/">
+                    <Link className="no-underline border-b border-blue text-blue mx-1" to="../login/">
                         Log in
                     </Link>.
                 </div>

@@ -21,6 +21,10 @@ class Api {
         }
     }
 
+    static async setToken(token) {
+        this.token = token;
+    }
+
     static async getCurrentUser(username){
         let res = await this.request(`users/${username}`)
         return res.user
@@ -29,6 +33,15 @@ class Api {
     static async getItems(){
         let res = await this.request(`items/`)
         return {data: res.items}
+    }
+
+    static async registerUser(data){
+        let res = await this.request(`auth/register`, data, 'post')
+        return res.token
+    }
+    static async loginUser(data){
+        let res = await this.request(`auth/login`, data, 'post')
+        return res.token
     }
 }
 
