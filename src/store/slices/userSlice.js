@@ -15,6 +15,16 @@ export const signupUser = createAsyncThunk(
     }
 )
 
+/*
+    Accepts {Username, Password}
+
+    Returns {token}
+
+    Set API.token to {token}
+
+    Stores token in redux
+*/
+
 export const loginUser = createAsyncThunk(
     'user/loginUser',
     async (data, thunkAPI) => {
@@ -29,13 +39,20 @@ export const loginUser = createAsyncThunk(
     }
 )
 
+/*
+    Accepts: data = userID
+
+    Clears API class token
+
+    Returns {msg}
+*/
 export const logOutUser = createAsyncThunk(
     'user/logOutUser',
     async (data, thunkAPI) => {
         try {
             const res = await API.logOutUser(data)
-            
             API.setToken('')
+
             return res.data
         } catch (err) {
             return console.error(err)
@@ -76,6 +93,7 @@ export const userSlice = createSlice({
         },
         [logOutUser.fulfilled]: (state, action) => {
             state.isLogedIn = false
+            state.token = ''
         }
     }
 })

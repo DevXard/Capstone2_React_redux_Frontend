@@ -11,10 +11,16 @@ const Nav = () => {
     const {decodedToken} = useJwt(token)
 
     async function logOut() {
+        /*Destructoring user Id from token 
+        and dispatching action to logout */
         const {uId} = decodedToken
         dispatch(logOutUser(uId))
     }
     
+    /*
+        If Redux user state isLogedIn is true show logout page
+        else show login page
+     */
     function logedIn() {
         if(isLogedIn){
             

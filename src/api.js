@@ -66,7 +66,7 @@ class Api {
        
     }
     static async logOutUser(data){
-        console.log(data)
+        /* Receaving userId  from redux sent call to logOut with that id */
         let res = await this.authRequest(`auth/logout`, {id: data})
         return res
     }
