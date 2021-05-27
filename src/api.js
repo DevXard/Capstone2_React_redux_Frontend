@@ -65,6 +65,11 @@ class Api {
         return res
        
     }
+    static async logOutUser(data){
+        console.log(data)
+        let res = await this.authRequest(`auth/logout`, {id: data})
+        return res
+    }
 }
 
 export default Api;

@@ -8,7 +8,7 @@ const LogIn = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const {isSuccess} = useSelector(userSelector)
+    const {isLogedIn} = useSelector(userSelector)
 
     const [formData, setFormData] = useState({
         username:"",
@@ -22,10 +22,10 @@ const LogIn = () => {
     }
 
     useEffect(() => {
-        if(isSuccess){
+        if(isLogedIn){
             history.push('/');
         }
-    }, [isSuccess])
+    }, [isLogedIn])
 
     function handleChange(e) {
         const {name, value} = e.target;

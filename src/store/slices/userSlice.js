@@ -7,8 +7,8 @@ export const signupUser = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const res = await API.registerUser(data)
-            API.setToken(res)
-            return res
+            API.setToken(res.data.token)
+            return res.data.token
         } catch (err) {
             return console.error(err)
         }
@@ -19,11 +19,24 @@ export const loginUser = createAsyncThunk(
     'user/loginUser',
     async (data, thunkAPI) => {
         try {
-            console.log("hi")
             const res = await API.loginUser(data)
             API.setToken(res.data.token)
-            console.log(res.data)
+        
             return res.data.token
+        } catch (err) {
+            return console.error(err)
+        }
+    }
+)
+
+export const logOutUser = createAsyncThunk(
+    'user/logOutUser',
+    async (data, thunkAPI) => {
+        try {
+            const res = await API.logOutUser(data)
+            
+            API.setToken('')
+            return res.data
         } catch (err) {
             return console.error(err)
         }
@@ -34,7 +47,7 @@ const initialState = {
     userData: {},
     token: '',
     isLoading: false,
-    isSuccess: false,
+    isLogedIn: false,
     isError: false,
 }
 
@@ -45,9 +58,9 @@ export const userSlice = createSlice({
 
     },
     extraReducers: {
-        [signupUser.fulfilled]: (state, payload) => {
-            state.isSuccess = true;
-            state.token = payload;
+        [signupUser.fulfilled]: (state, action) => {
+            state.isLogedIn = true;
+            state.token = action.payload;
             state.isLoading = false;
         },
         [signupUser.pending]: (state) => {
@@ -56,10 +69,13 @@ export const userSlice = createSlice({
         [signupUser.rejected]: (state) => {
             state.isError = true;
         },
-        [loginUser.fulfilled]: (state, payload) => {
-            state.isSuccess = true;
-            state.token = payload;
+        [loginUser.fulfilled]: (state, action) => {
+            state.isLogedIn = true;
+            state.token = action.payload;
             state.isLoading = false;
+        },
+        [logOutUser.fulfilled]: (state, action) => {
+            state.isLogedIn = false
         }
     }
 })

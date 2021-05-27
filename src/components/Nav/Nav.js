@@ -1,25 +1,37 @@
 import {Link} from 'react-router-dom';
-import {useSelector} from 'react-redux';
-import {userSelector} from '../../store/slices/userSlice'
+import {useJwt} from 'react-jwt';
+import {useDispatch, useSelector} from 'react-redux';
+import {userSelector, logOutUser} from '../../store/slices/userSlice'
 
 
 const Nav = () => {
 
-    const {isSuccess} = useSelector(userSelector)
+    const dispatch = useDispatch();
+    const {isLogedIn, token} = useSelector(userSelector)
+    const {decodedToken} = useJwt(token)
 
+    async function logOut() {
+        const {uId} = decodedToken
+        dispatch(logOutUser(uId))
+    }
+    
     function logedIn() {
-        if(isSuccess){
+        if(isLogedIn){
+            
             return (
             <div>
-                <Link to="/login" className="text-white mx-2">Log Out</Link>
+                <Link to="" onClick={logOut} className="text-white mx-2">Log Out</Link>
             </div>
             )
-        }else {
+        }
+        return (
             <div>
                 <Link to="/login" className="text-white mx-2">Login</Link>
                 <Link to="/signup" className="text-white mx-2">Sign Up</Link>
             </div>
-        }
+        )
+            
+        
     }
 
     return(

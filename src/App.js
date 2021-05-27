@@ -7,7 +7,9 @@ import SignUp from './components/SignUp/SignUp';
 import Login from './components/LogIn/LogIn';
 
 
+
 function App() {
+
   return (
     <>
     <BrowserRouter>
