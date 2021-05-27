@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import API from '../../api';
+import API from '../../api'; 
+
 
 export const signupUser = createAsyncThunk(
     'user/signupUser',
@@ -18,9 +19,11 @@ export const loginUser = createAsyncThunk(
     'user/loginUser',
     async (data, thunkAPI) => {
         try {
-            const res = await API.registerUser(data)
-            API.setToken(res)
-            return res
+            console.log("hi")
+            const res = await API.loginUser(data)
+            API.setToken(res.data.token)
+            console.log(res.data)
+            return res.data.token
         } catch (err) {
             return console.error(err)
         }
@@ -52,6 +55,11 @@ export const userSlice = createSlice({
         },
         [signupUser.rejected]: (state) => {
             state.isError = true;
+        },
+        [loginUser.fulfilled]: (state, payload) => {
+            state.isSuccess = true;
+            state.token = payload;
+            state.isLoading = false;
         }
     }
 })

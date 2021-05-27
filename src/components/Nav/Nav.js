@@ -1,6 +1,26 @@
 import {Link} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import {userSelector} from '../../store/slices/userSlice'
+
 
 const Nav = () => {
+
+    const {isSuccess} = useSelector(userSelector)
+
+    function logedIn() {
+        if(isSuccess){
+            return (
+            <div>
+                <Link to="/login" className="text-white mx-2">Log Out</Link>
+            </div>
+            )
+        }else {
+            <div>
+                <Link to="/login" className="text-white mx-2">Login</Link>
+                <Link to="/signup" className="text-white mx-2">Sign Up</Link>
+            </div>
+        }
+    }
 
     return(
         <nav class="bg-gray-800">
@@ -17,10 +37,7 @@ const Nav = () => {
                         </div>
                     </div>
 
-                    <div>
-                        <Link to="/" className="text-white mx-2">Login</Link>
-                        <Link to="/signup" className="text-white mx-2">Sign Up</Link>
-                    </div>
+                    {logedIn()}
                 </div>
             </div>
         </nav>

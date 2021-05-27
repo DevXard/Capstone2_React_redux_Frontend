@@ -12,13 +12,34 @@ class Api {
         const url = `${BASE_URL}/${endpoint}`;
         const headers = {Authorization: `Bearer ${Api.token}`};
         const params = (method === 'get') ? data : {};
+        const instance = axios.create({withCredentials: true})
+        
         try {
-            return (await axios({url, method, data, params, headers})).data;
+            return (await instance({url, method, data, params, headers})).data;
         } catch(err) {
             console.error("API Error:", err.response);
             let message = err.response.data.error.message;
             throw Array.isArray(message) ? message : [message];
         }
+    }
+
+    static async authRequest(endpoint, data){
+        console.debug("API call:", endpoint, data);
+        const url = `${BASE_URL}/${endpoint}`;
+
+        try {
+            const res = await axios.post(url, data, {withCredentials: true})
+            return res
+        } catch (err) {
+            console.error("API Error:", err.response);
+            let message = err.response.data.error.message;
+            throw Array.isArray(message) ? message : [message];
+        }
+    }
+    
+    static async tokenTest(){
+        let res = await this.request(`auth/token`)
+        return res
     }
 
     static async setToken(token) {
@@ -40,8 +61,9 @@ class Api {
         return res.token
     }
     static async loginUser(data){
-        let res = await this.request(`auth/login`, data, 'post')
-        return res.token
+        let res = await this.authRequest(`auth/login`, data)
+        return res
+       
     }
 }
 
