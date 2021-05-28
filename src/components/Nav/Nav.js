@@ -7,7 +7,7 @@ import {userSelector, logOutUser} from '../../store/slices/userSlice'
 const Nav = () => {
 
     const dispatch = useDispatch();
-    const {isLogedIn, token} = useSelector(userSelector)
+    const {isLogedIn, token, userData} = useSelector(userSelector)
     const {decodedToken} = useJwt(token)
 
     async function logOut() {
@@ -15,6 +15,19 @@ const Nav = () => {
         and dispatching action to logout */
         const {uId} = decodedToken
         dispatch(logOutUser(uId))
+    }
+
+    
+    function isSeller(){
+        
+        if(userData && userData.seller){
+            return(
+                <>
+                <Link to="/additem" className="text-white mx-2">AddItem</Link>
+                </>
+            )
+        }
+        return <div></div>
     }
     
     /*
@@ -51,7 +64,7 @@ const Nav = () => {
 
                         <div>
                             <Link to="/profile" className="text-white mx-2">Profile</Link>
-                            <Link to="/" className="text-white mx-2">Register</Link>
+                            {isSeller()}
                             
                         </div>
                     </div>

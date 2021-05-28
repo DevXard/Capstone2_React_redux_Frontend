@@ -32,8 +32,7 @@ class Api {
             return res
         } catch (err) {
             console.error("API Error:", err.response);
-            let message = err.response.data.error.message;
-            throw Array.isArray(message) ? message : [message];
+            return err.response.data
         }
     }
     
@@ -66,6 +65,7 @@ class Api {
     }
     static async loginUser(data){
         let res = await this.authRequest(`auth/login`, data)
+        console.log(res)
         return res
        
     }

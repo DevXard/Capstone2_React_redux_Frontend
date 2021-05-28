@@ -8,7 +8,7 @@ const LogIn = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const {isLogedIn} = useSelector(userSelector)
+    const {isLogedIn, isError, errMsg} = useSelector(userSelector)
 
     const [formData, setFormData] = useState({
         username:"",
@@ -20,10 +20,12 @@ const LogIn = () => {
         e.preventDefault();
         dispatch(loginUser(formData))
     }
+    
 
     useEffect(() => {
         if(isLogedIn){
             history.push('/');
+            console.log(isLogedIn)
         }
     }, [isLogedIn, history])
 
@@ -32,11 +34,20 @@ const LogIn = () => {
         setFormData(data => ({...data, [name]: value}))
     }
 
+    function errorLogin(){
+        return(
+            <div>
+                <h1 className="text-red-500">{errMsg}</h1>
+            </div>
+        )
+    }
+
     return (
         <div className="bg-grey-lighter min-h-screen flex mt-5 flex-col">
             <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
                 <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-                    <h1 className="mb-8 text-3xl text-center">Sign up</h1>
+                    <h1 className="mb-8 text-3xl text-center">Log In</h1>
+                    {isError ? errorLogin() : null}
                     <form onSubmit={handleSubmit}>
                     <label>Username</label>
                     <input 
@@ -57,7 +68,7 @@ const LogIn = () => {
                     <button
                         type="submit"
                         className="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-1"
-                    >Create Account</button>
+                    >Log In</button>
                     </form>
                     <div className="text-center text-sm text-grey-dark mt-4">
                         By signing up, you agree to the 
