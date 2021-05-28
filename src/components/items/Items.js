@@ -1,6 +1,7 @@
 import {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllItems, itemsSelector} from "../../store/slices/itemsSlice"
+import {userSelector} from '../../store/slices/userSlice';
 import ItemsCard from './ItemsCard';
 import './items.css'
 
@@ -8,10 +9,16 @@ const Items = () => {
 
     const dispatch = useDispatch();
     const {items} = useSelector(itemsSelector)
+    const {isLogedIn} = useSelector(userSelector)
 
     useEffect(() => {
-        dispatch(getAllItems())
-    }, [dispatch]);
+        if(isLogedIn){
+            dispatch(getAllItems())
+        }
+            
+        
+            
+    }, [dispatch, isLogedIn]);
 
      
     return(

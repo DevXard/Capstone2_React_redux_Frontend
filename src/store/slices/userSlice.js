@@ -60,6 +60,22 @@ export const logOutUser = createAsyncThunk(
     }
 )
 
+/* Refresh Token */
+
+export const refreshToken = createAsyncThunk(
+    'user/refreshToken',
+    async (thunkAPI) => {
+        
+        try{
+            const res = await API.renewToken()
+            API.setToken(res.token)
+            return res
+        }catch (err) {
+            return console.error(err)
+        }
+    }
+)
+
 const initialState = {
     userData: {},
     token: '',
@@ -86,14 +102,22 @@ export const userSlice = createSlice({
         [signupUser.rejected]: (state) => {
             state.isError = true;
         },
+
         [loginUser.fulfilled]: (state, action) => {
             state.isLogedIn = true;
             state.token = action.payload;
             state.isLoading = false;
         },
+
         [logOutUser.fulfilled]: (state, action) => {
             state.isLogedIn = false
             state.token = ''
+        },
+
+        [refreshToken.fulfilled]: (state, action) => {
+            state.isLogedIn = action.payload.logedIn;
+            state.token = action.payload.token
+    
         }
     }
 })

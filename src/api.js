@@ -8,7 +8,7 @@ class Api {
 
     static async request(endpoint, data = {}, method = 'get'){
         console.debug("API call:", endpoint, data, method);
-
+        
         const url = `${BASE_URL}/${endpoint}`;
         const headers = {Authorization: `Bearer ${Api.token}`};
         const params = (method === 'get') ? data : {};
@@ -44,6 +44,7 @@ class Api {
 
     static async setToken(token) {
         this.token = token;
+
     }
 
     static async getCurrentUser(username){
@@ -55,6 +56,9 @@ class Api {
         let res = await this.request(`items/`)
         return {data: res.items}
     }
+
+        /* AUTH Calls */
+    /* ********************************************************************** */
 
     static async registerUser(data){
         let res = await this.request(`auth/register`, data, 'post')
@@ -70,6 +74,12 @@ class Api {
         let res = await this.authRequest(`auth/logout`, {id: data})
         return res
     }
+    static async renewToken(){
+        
+        let res = await this.request(`auth/token`)
+        return res
+    }
+    /* ********************************************************************** */
 }
 
 export default Api;

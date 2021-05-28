@@ -50,8 +50,9 @@ const Nav = () => {
                       </svg></Link>
 
                         <div>
-                            <Link to="/" className="text-white mx-2">Profine</Link>
+                            <Link to="/" className="text-white mx-2">Profile</Link>
                             <Link to="/" className="text-white mx-2">Register</Link>
+                            
                         </div>
                     </div>
 
