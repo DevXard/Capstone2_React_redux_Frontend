@@ -6,6 +6,7 @@ import {useJwt} from "react-jwt";
 import Items from './components/items/Items';
 import SearchBar from './components/search/searchBar';
 import Nav from './components/Nav/Nav';
+import Profile from './components/Profile/Profile';
 import SignUp from './components/SignUp/SignUp';
 import Login from './components/LogIn/LogIn';
 import API from './api';
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <Route exact path="/login">
           <Login />
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
         </Route>
       </Switch>
       

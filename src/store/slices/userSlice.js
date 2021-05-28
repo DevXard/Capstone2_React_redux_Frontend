@@ -1,4 +1,5 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import jwt_decode from "jwt-decode";
 import API from '../../api'; 
 
 
@@ -31,8 +32,11 @@ export const loginUser = createAsyncThunk(
         try {
             const res = await API.loginUser(data)
             API.setToken(res.data.token)
-        
-            return res.data.token
+            let {username} = jwt_decode(res.data.token)
+            const userRes = await API.getCurrentUser(username) 
+            
+            return {token: res.data.token, user: userRes}
+            
         } catch (err) {
             return console.error(err)
         }
@@ -105,8 +109,9 @@ export const userSlice = createSlice({
 
         [loginUser.fulfilled]: (state, action) => {
             state.isLogedIn = true;
-            state.token = action.payload;
+            state.token = action.payload.token;
             state.isLoading = false;
+            state.userData = action.payload.user;
         },
 
         [logOutUser.fulfilled]: (state, action) => {

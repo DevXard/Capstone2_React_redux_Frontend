@@ -48,7 +48,7 @@ class Api {
     }
 
     static async getCurrentUser(username){
-        let res = await this.request(`users/${username}`)
+        let res = await this.request(`user/${username}`)
         return res.user
     }
 

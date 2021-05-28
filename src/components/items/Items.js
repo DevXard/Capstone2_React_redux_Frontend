@@ -12,6 +12,8 @@ const Items = () => {
     const {isLogedIn} = useSelector(userSelector)
 
     useEffect(() => {
+        // TODO: Decide if user have to be loged in to see items
+        dispatch(getAllItems())
         if(isLogedIn){
             dispatch(getAllItems())
         }
