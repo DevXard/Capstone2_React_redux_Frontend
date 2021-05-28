@@ -73,7 +73,11 @@ export const refreshToken = createAsyncThunk(
         try{
             const res = await API.renewToken()
             API.setToken(res.token)
-            return res
+            let {username} = jwt_decode(res.token)
+            const userRes = await API.getCurrentUser(username) 
+            
+            return {token: res.token, user: userRes, logedIn: res.logedIn}
+            // return res
         }catch (err) {
             return console.error(err)
         }
@@ -121,7 +125,8 @@ export const userSlice = createSlice({
 
         [refreshToken.fulfilled]: (state, action) => {
             state.isLogedIn = action.payload.logedIn;
-            state.token = action.payload.token
+            state.token = action.payload.token;
+            state.userData = action.payload.user;
     
         }
     }
