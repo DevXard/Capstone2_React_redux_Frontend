@@ -1,13 +1,14 @@
 import {Link} from 'react-router-dom';
 import {useJwt} from 'react-jwt';
 import {useDispatch, useSelector} from 'react-redux';
-import {userSelector, logOutUser} from '../../store/slices/userSlice'
+import {userSelector, logOutUser} from '../../store/slices/userSlice';
+import './Nav.css'
 
 
 const Nav = () => {
 
     const dispatch = useDispatch();
-    const {isLogedIn, token, userData} = useSelector(userSelector)
+    const {isLogedIn, token, userData, isLoading} = useSelector(userSelector)
     const {decodedToken} = useJwt(token)
 
     async function logOut() {
@@ -40,8 +41,15 @@ const Nav = () => {
             return (
             <div>
                 <Link to="" onClick={logOut} className="text-white mx-2">Log Out</Link>
+                
             </div>
             )
+        }else if(isLoading){
+            return (
+                <div>
+                <div className="spinner w-5 h-5"></div>
+                </div>
+                )
         }
         return (
             <div>

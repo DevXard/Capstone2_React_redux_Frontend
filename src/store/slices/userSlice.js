@@ -159,7 +159,14 @@ export const userSlice = createSlice({
             state.userData = action.payload.user;
             state.isError = false;
     
-        },[refreshToken.rejected]: (state) => {
+        },
+        [refreshToken.pending]: (state, action) => {
+            state.isLogedIn = false;
+            state.isLoading = true;
+            state.isError = false;
+    
+        },
+        [refreshToken.rejected]: (state) => {
             state.isLogedIn = false;
             state.token = '';
             
