@@ -36,10 +36,6 @@ class Api {
         }
     }
     
-    static async tokenTest(){
-        let res = await this.request(`auth/token`)
-        return res
-    }
 
     static async setToken(token) {
         this.token = token;
@@ -51,10 +47,18 @@ class Api {
         return res.user
     }
 
+    /* Items */
+    /***************************************************************************/
     static async getItems(){
         let res = await this.request(`items/`)
         return {data: res.items}
     }
+
+    static async addItem(data) {
+        let res = await this.request(`items/register`, data, 'post')
+        return res
+    }
+
 
         /* AUTH Calls */
     /* ********************************************************************** */
@@ -65,7 +69,6 @@ class Api {
     }
     static async loginUser(data){
         let res = await this.authRequest(`auth/login`, data)
-        console.log(res)
         return res
        
     }

@@ -1,14 +1,35 @@
 import { Link } from 'react-router-dom';
+import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {addItem} from '../../store/slices/itemsSlice';
+import {userSelector} from '../../store/slices/userSlice';
+import {useHistory} from 'react-router-dom';
 
 const AddItem = () => {
 
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const {userData} = useSelector(userSelector)
+     
+    const [formData, setFormData] = useState({
+        type: '',
+        name: '',
+        details: '',
+        quantity: '',
+        price: ''
+    })
 
-    function handleChange(){
+    function handleChange(e){
+        const {value, name} = e.target;
 
+        setFormData(data => ({...data, [name]: value}))
     }
 
-    function handleSubmit(){
-
+    function handleSubmit(e){
+        e.preventDefault();
+        formData.user_id = userData.id
+        dispatch(addItem(formData))
+        history.push('/');
     }
 
     return (
@@ -22,7 +43,7 @@ const AddItem = () => {
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         name="type"
-                        
+                        value={formData.type}
                         onChange={handleChange}
                         placeholder="Type" />
                     <label>Name</label>
@@ -30,7 +51,7 @@ const AddItem = () => {
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         name="name"
-                        
+                        value={formData.name}
                         onChange={handleChange}
                         placeholder="Name" />
                     <label>Details</label>
@@ -38,15 +59,15 @@ const AddItem = () => {
                         type="text"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         name="details"
-                        
+                        value={formData.details}
                         onChange={handleChange}
                         placeholder="Details" />
-                    <label>quantity</label>
+                    <label>Quantity</label>
                     <input 
                         type="number"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         name="quantity"
-                        
+                        value={formData.quantity}
                         onChange={handleChange}
                         placeholder="Quantity" />
                     <label>Price</label>
@@ -54,7 +75,7 @@ const AddItem = () => {
                         type="number"
                         className="block border border-grey-light w-full p-3 rounded mb-4"
                         name="price"
-                        
+                        value={formData.price}
                         onChange={handleChange}
                         placeholder="Price" />
                     <button
