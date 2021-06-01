@@ -1,22 +1,47 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {getItem, itemsSelector} from '../../store/slices/itemsSlice';
+import {userSelector} from '../../store/slices/userSlice';
+import {registerOrder} from '../../store/slices/ordersSlice';
 
 const DetailsPage = () => {
 
     const {id} = useParams();
     const dispatch = useDispatch();
-    const {item} = useSelector(itemsSelector)
+    const history = useHistory();
+    const {item} = useSelector(itemsSelector);
+    const {userData} = useSelector(userSelector);
+
+    const [formData, setFormData] = useState({
+        quantity: ''
+    })
+    let isoDate = new Date(item.date)
+
+    let date = `${isoDate.getFullYear()}/${isoDate.getMonth()}/${isoDate.getDate()}`
 
     useEffect(() => {
         dispatch(getItem(id))
     },[id, dispatch])
     
-    let isoDate = new Date(item.date)
-
-    let date = `${isoDate.getFullYear()}/${isoDate.getMonth()}/${isoDate.getDate()}`
+    function handleChange(e) {
+        const {value, name} = e.target;
+        setFormData(data => ({...data, [name]: value}))
+    }
+    
+    function handleSubmit(e){
+        e.preventDefault();
+        
+        let itemId = +id 
+        let qty = +formData.quantity 
+        dispatch(registerOrder({
+            user_id: userData.id,
+            item_id: itemId,
+            quantity: qty
+        }))
+        history.push('/');
+    }
     
     return (
         <div className='m-8 px-8' >
@@ -24,7 +49,7 @@ const DetailsPage = () => {
         <div className="flex-none w-48 relative">
           <img src="https://c8.alamy.com/comp/T58125/selection-of-fruit-and-vegetables-on-white-background-T58125.jpg" alt="" className="absolute inset-0 w-full h-full object-cover p-3 border border-gray-100"/>
         </div>
-        <form className="flex-auto p-6">
+        <form onSubmit={handleSubmit} className="flex-auto p-6">
           <div className="flex flex-wrap">
             <h1 className="flex-auto text-xl font-semibold">
               {item.type}
@@ -37,11 +62,19 @@ const DetailsPage = () => {
             </div>
             <div className="w-full flex-none text-sm font-medium text-gray-500 mt-2">
               Quantity: {item.quantity}
+              <p>{item.details}</p> 
             </div>
           </div>
           <div className="flex items-baseline mt-4 mb-6">
             <div className="space-x-2 flex">
-              <p>{item.details}</p>
+            <label>Quantity</label>
+            <input 
+                type="number"
+                className="block border border-grey-light w-full p-1 rounded mb-4"
+                name="quantity"
+                value={formData.quantity}
+                onChange={handleChange}
+                placeholder="Quantity" />
             </div>
             <div className="ml-auto text-sm text-gray-500 underline">{date}</div>
           </div>

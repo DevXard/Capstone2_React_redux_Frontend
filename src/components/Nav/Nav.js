@@ -10,11 +10,12 @@ const Nav = () => {
     const dispatch = useDispatch();
     const {isLogedIn, token, userData, isLoading} = useSelector(userSelector)
     const {decodedToken} = useJwt(token)
-
+    
     async function logOut() {
         /*Destructoring user Id from token 
         and dispatching action to logout */
         const {uId} = decodedToken
+        console.log(uId)
         dispatch(logOutUser(uId))
     }
 

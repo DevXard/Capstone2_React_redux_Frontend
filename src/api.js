@@ -88,6 +88,13 @@ class Api {
         return res
     }
     /* ********************************************************************** */
+
+    /* Orders */
+
+    static async createOrder(data){
+        const res = await this.request(`order/register`, data, 'post')
+        return res
+    }
 }
 
 export default Api;
