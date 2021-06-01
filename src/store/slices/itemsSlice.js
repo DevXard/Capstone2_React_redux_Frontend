@@ -18,9 +18,19 @@ export const addItem = createAsyncThunk(
     }
 )
 
+export const getItem = createAsyncThunk(
+    'item/getItem',
+    async (id, thunkAPI) => {
+        const res = await API.getItemById(id)
+        console.log(res)
+        return res
+    }
+)
+
 const initialState = {
     loading: false,
-    items: []
+    items: [],
+    item: {}
 }
 
 const itemsSlice = createSlice({
@@ -32,6 +42,9 @@ const itemsSlice = createSlice({
     extraReducers: {
         [getAllItems.fulfilled]: (state, action) => {
             state.items = [...action.payload]
+        },
+        [getItem.fulfilled]: (state, action) => {
+            state.item = {...action.payload.item};
         }
         
     }
