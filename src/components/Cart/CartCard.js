@@ -1,5 +1,4 @@
 const CartCard = ({data}) => {
-    console.log(data)
 
     function date(date) {
         let isoDate = new Date(date)

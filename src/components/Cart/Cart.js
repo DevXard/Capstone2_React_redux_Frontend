@@ -13,12 +13,12 @@ const Cart = () => {
     console.log(orders)
     useEffect(() => {
         dispatch(buyOrders(userData.id))
-    },[buyOrders, dispatch])
+    },[userData.id, dispatch])
 
     
     return (
         <div>
-        {orders.map((order) => <CartCard data={order}/>)}
+        {orders.map((order) => <CartCard key={order.id} data={order}/>)}
             
         </div>
     )

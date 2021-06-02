@@ -78,7 +78,7 @@ export const refreshToken = createAsyncThunk(
             const res = await API.renewToken()
             
             if(!res.logedIn) {
-                console.log(res)
+                
                 return res
             }
             
@@ -127,11 +127,11 @@ export const userSlice = createSlice({
         [loginUser.fulfilled]: (state, action) => {
             
             if(action.payload.message){
-                console.log(action.payload)
+                
                 state.isError = true;
                 state.errMsg = action.payload.message;
             }else{
-                console.log(action.payload.logedIn)
+                
                 state.isLoading = action.payload.logedIn;
                 state.token = action.payload.token;
                 state.userData = action.payload.user;
@@ -157,11 +157,13 @@ export const userSlice = createSlice({
         },
 
         [refreshToken.fulfilled]: (state, action) => {
-            if(!action.payload.isLogedIn){
+            
+            if(!action.payload.logedIn){
                 state.isLogedIn = action.payload.logedIn;
                 state.token = action.payload.token;
                 state.isLoading = false;
             }else{
+                
                 state.isLogedIn = action.payload.logedIn;
                 state.token = action.payload.token;
                 state.userData = action.payload.user;
