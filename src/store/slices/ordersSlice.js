@@ -19,6 +19,14 @@ export const buyOrders = createAsyncThunk(
     }
 )
 
+export const sellOrders = createAsyncThunk(
+    `orders/sellOrders`,
+    async (id, order) => {
+        const res = await API.getSellOrders(id)
+        return res.orders
+    }
+)
+
 const initialState = {
     orders: []
 }
@@ -32,6 +40,9 @@ const ordersSlice = createSlice({
     extraReducers: {
         [buyOrders.fulfilled]: (state, action) => {
             
+            state.orders = [...action.payload]
+        },
+        [sellOrders.fulfilled]: (state, action) => {
             state.orders = [...action.payload]
         }
     }

@@ -25,6 +25,7 @@ const Nav = () => {
         if(userData && userData.seller){
             return(
                 <>
+                <Link to="/orders" className="text-white mx-2">Orders</Link>
                 <Link to="/additem" className="text-white mx-2">AddItem</Link>
                 </>
             )
