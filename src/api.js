@@ -105,6 +105,16 @@ class Api {
         const res = await this.request(`order/sellorders/${id}`)
         return res
     }
+
+    /* Maps */
+    /********************************************************************** */
+
+    static async getAddressLocations(address){
+        
+        const res = await axios.get(`https://nominatim.openstreetmap.org/search?${address}&format=geojson`)
+        
+        return res.data
+    }
 }
 
 export default Api;

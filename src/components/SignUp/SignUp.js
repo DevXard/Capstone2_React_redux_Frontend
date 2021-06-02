@@ -3,6 +3,7 @@ import {Link, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {signupUser, userSelector} from '../../store/slices/userSlice';
+import API from '../../api';
 
 const SignUp = () => {
 
@@ -24,11 +25,21 @@ const SignUp = () => {
         
     })
 
-    function handleSubmit(e) {
+    const getLngLat = async () =>{
+        let address = `street=${formData.street_address}&city=${formData.city}&state=${formData.state}&postalcode=${formData.zip}`
+        let coords = await API.getAddressLocations(address)
+        return coords.features[0].geometry.coordinates
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if(formData.password !== formData.confirm_password) {
             return <div>Error</div>
         }
+        const latLong = await getLngLat();
+        formData.lat = latLong[0]
+        formData.lng = latLong[1]
+        
         dispatch(signupUser(formData))
     }
 
@@ -43,6 +54,7 @@ const SignUp = () => {
         setFormData(data => ({...data, [name]: value}))
     }
 
+    
     return (
         <div className="bg-grey-lighter min-h-screen flex mt-5 flex-col">
             <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
