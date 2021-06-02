@@ -7,6 +7,7 @@ import Items from './components/items/Items';
 import SearchBar from './components/search/searchBar';
 import Nav from './components/Nav/Nav';
 import DetailsPage from './components/Details/DetailsPage';
+import Cart from './components/Cart/Cart';
 import Profile from './components/Profile/Profile';
 import AddItem from './components/AddItem/AddItem';
 import SignUp from './components/SignUp/SignUp';
@@ -57,6 +58,9 @@ function App() {
         </Route>
         <Route exact path="/details/:id">
           <DetailsPage />
+        </Route>
+        <Route exact path="/cart" >
+          <Cart />
         </Route>
       </Switch>
       

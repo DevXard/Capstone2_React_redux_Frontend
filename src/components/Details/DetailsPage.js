@@ -40,7 +40,7 @@ const DetailsPage = () => {
             item_id: itemId,
             quantity: qty
         }))
-        history.push('/');
+        history.push('/cart');
     }
     
     return (

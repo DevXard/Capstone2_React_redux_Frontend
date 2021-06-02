@@ -22,7 +22,6 @@ export const getItem = createAsyncThunk(
     'item/getItem',
     async (id, thunkAPI) => {
         const res = await API.getItemById(id)
-        console.log(res)
         return res
     }
 )

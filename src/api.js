@@ -95,6 +95,11 @@ class Api {
         const res = await this.request(`order/register`, data, 'post')
         return res
     }
+
+    static async getBuyOrders(id){
+        const res = await this.request(`order/buyorders/${id}`)
+        return res
+    }
 }
 
 export default Api;
