@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {getItem, itemsSelector} from '../../store/slices/itemsSlice';
+import {getItem, getItemAddress, itemsSelector} from '../../store/slices/itemsSlice';
 import {userSelector} from '../../store/slices/userSlice';
 import {registerOrder} from '../../store/slices/ordersSlice';
 
@@ -13,7 +13,7 @@ const DetailsPage = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
-    const {item} = useSelector(itemsSelector);
+    const {item, itemAddress} = useSelector(itemsSelector);
     const {userData} = useSelector(userSelector);
     
     const [formData, setFormData] = useState({
@@ -25,6 +25,7 @@ const DetailsPage = () => {
 
     useEffect(() => {
         dispatch(getItem(id))
+        dispatch(getItemAddress(id))
     },[id, dispatch])
     
     function handleChange(e) {
@@ -44,7 +45,7 @@ const DetailsPage = () => {
         }))
         history.push('/cart');
     }
-    
+        
     return (
         <div className='m-8 px-8' >
         <div className="flex shadow-lg ">
@@ -93,7 +94,7 @@ const DetailsPage = () => {
           </div>
         </form>
       </div>
-      <Map lat={userData.lat} lng={userData.lng}/>
+      <Map lat={itemAddress.lat} lng={itemAddress.lng}/>
         </div>
     )
 }

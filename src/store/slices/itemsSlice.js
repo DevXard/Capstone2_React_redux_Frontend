@@ -26,10 +26,19 @@ export const getItem = createAsyncThunk(
     }
 )
 
+export const getItemAddress = createAsyncThunk(
+    `item/getItemAddress`,
+    async (id, thunkAPI) => {
+        const res = await API.getItemAddress(id)
+        return res.addresses
+    }
+)
+
 const initialState = {
     loading: false,
     items: [],
-    item: {}
+    item: {},
+    itemAddress: {}
 }
 
 const itemsSlice = createSlice({
@@ -44,6 +53,9 @@ const itemsSlice = createSlice({
         },
         [getItem.fulfilled]: (state, action) => {
             state.item = {...action.payload.item};
+        },
+        [getItemAddress.fulfilled]: (state, action) => {
+            state.itemAddress = {...action.payload}
         }
         
     }

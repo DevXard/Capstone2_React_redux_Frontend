@@ -115,6 +115,12 @@ class Api {
         
         return res.data
     }
+
+    static async getItemAddress(id){
+        const res = await this.request(`address/item/${id}`)
+
+        return res
+    }
 }
 
 export default Api;
