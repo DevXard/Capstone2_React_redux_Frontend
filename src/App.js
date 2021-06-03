@@ -9,14 +9,15 @@ import Nav from './components/Nav/Nav';
 import DetailsPage from './components/Details/DetailsPage';
 import Cart from './components/Cart/Cart';
 import Orders from './components/Orders/Orders';
+import Map from './components/Map/Map';
 import Profile from './components/Profile/Profile';
 import AddItem from './components/AddItem/AddItem';
 import SignUp from './components/SignUp/SignUp';
 import Login from './components/LogIn/LogIn';
 import API from './api';
 import {refreshToken} from './store/slices/userSlice';
-
 import { userSelector } from './store/slices/userSlice'
+
 
 function App() {
   const {isLogedIn} = useSelector(userSelector)
@@ -65,6 +66,9 @@ function App() {
         </Route>
         <Route exact path="/orders" >
           <Orders />
+        </Route>
+        <Route exact path="/map" >
+          <Map />
         </Route>
       </Switch>
       

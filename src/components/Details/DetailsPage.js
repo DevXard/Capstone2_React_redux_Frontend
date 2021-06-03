@@ -6,6 +6,8 @@ import {getItem, itemsSelector} from '../../store/slices/itemsSlice';
 import {userSelector} from '../../store/slices/userSlice';
 import {registerOrder} from '../../store/slices/ordersSlice';
 
+import Map from '../Map/Map';
+
 const DetailsPage = () => {
 
     const {id} = useParams();
@@ -13,7 +15,7 @@ const DetailsPage = () => {
     const history = useHistory();
     const {item} = useSelector(itemsSelector);
     const {userData} = useSelector(userSelector);
-
+    
     const [formData, setFormData] = useState({
         quantity: ''
     })
@@ -91,6 +93,7 @@ const DetailsPage = () => {
           </div>
         </form>
       </div>
+      <Map lat={userData.lat} lng={userData.lng}/>
         </div>
     )
 }

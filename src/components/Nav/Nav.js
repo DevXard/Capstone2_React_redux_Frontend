@@ -27,6 +27,7 @@ const Nav = () => {
                 <>
                 <Link to="/orders" className="text-white mx-2">Orders</Link>
                 <Link to="/additem" className="text-white mx-2">AddItem</Link>
+                
                 </>
             )
         }
@@ -75,6 +76,7 @@ const Nav = () => {
                         <div>
                             <Link to="/profile" className="text-white mx-2">Profile</Link>
                             <Link to="/cart" className="text-white mx-2">Cart</Link>
+                            <Link to="/map" className="text-white mx-2">Map</Link>
                             {isSeller()}
                             
                         </div>
