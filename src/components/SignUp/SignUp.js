@@ -9,7 +9,7 @@ const SignUp = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const {isSuccess} = useSelector(userSelector)
+    const {isLogedIn} = useSelector(userSelector)
 
     const [formData, setFormData] = useState({
         username:"",
@@ -43,11 +43,11 @@ const SignUp = () => {
         dispatch(signupUser(formData))
     }
 
-    // useEffect(() => {
-    //     if(isSuccess){
-    //         history.push('/');
-    //     }
-    // }, [isSuccess])
+    useEffect(() => {
+        if(isLogedIn){
+            history.push('/');
+        }
+    }, [isLogedIn])
 
     function handleChange(e) {
         const {name, value} = e.target;

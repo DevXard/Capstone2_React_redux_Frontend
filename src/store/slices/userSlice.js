@@ -8,8 +8,17 @@ export const signupUser = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const res = await API.registerUser(data)
+            console.log(res.message)
+            if(res.message){
+                console.log("YES")
+                return res
+            }
             API.setToken(res.data.token)
-            return res.data.token
+            let {username} = jwt_decode(res.data.token)
+            const userRes = await API.getCurrentUser(username) 
+            
+            return {token: res.data.token, user: userRes, logedIn: res.data.logedIn}
+            
         } catch (err) {
             return console.error(err)
         }
@@ -31,6 +40,7 @@ export const loginUser = createAsyncThunk(
     async (data, thunkAPI) => {
         try {
             const res = await API.loginUser(data)
+            console.log(res)
             if(res.message){
                 return res
             }
@@ -112,10 +122,17 @@ export const userSlice = createSlice({
     },
     extraReducers: {
         [signupUser.fulfilled]: (state, action) => {
-            state.isLogedIn = true;
-            state.token = action.payload;
-            state.isLoading = false;
-            state.isError = false;
+            if(action.payload.message){
+                
+                state.isError = true;
+                state.errMsg = action.payload.message;
+            }else{
+                
+                state.isLoading = action.payload.logedIn;
+                state.token = action.payload.token;
+                state.userData = action.payload.user;
+                state.isError = false;
+            }
         },
         [signupUser.pending]: (state) => {
             state.isLoading = true;

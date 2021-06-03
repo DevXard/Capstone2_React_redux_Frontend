@@ -69,8 +69,8 @@ class Api {
     /* ********************************************************************** */
 
     static async registerUser(data){
-        let res = await this.request(`auth/register`, data, 'post')
-        return res.token
+        let res = await this.authRequest(`auth/register`, data, 'post')
+        return res
     }
     static async loginUser(data){
         let res = await this.authRequest(`auth/login`, data)
