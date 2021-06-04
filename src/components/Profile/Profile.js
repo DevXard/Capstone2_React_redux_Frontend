@@ -35,8 +35,10 @@ const Profile = () => {
           </figure>
           
         </div>
-        <div className="flex justify-center m-5">
-            <Map lat={lat} lng={lng}/>
+        <div className="flex justify-center m-8">
+            <div className='w-3/6'>
+                <Map lat={lat} lng={lng}/>
+            </div>  
         </div>
         
         </>

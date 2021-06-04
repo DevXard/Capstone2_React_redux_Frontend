@@ -30,7 +30,7 @@ function App() {
       dispatch(refreshToken())
     }
     
-  },[isExpired, API.token])
+  },[isExpired, dispatch]);
 
   function test() {
     console.log()

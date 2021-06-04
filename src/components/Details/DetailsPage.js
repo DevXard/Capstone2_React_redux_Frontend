@@ -94,7 +94,11 @@ const DetailsPage = () => {
           </div>
         </form>
       </div>
+      <div >
       <Map lat={itemAddress.lat} lng={itemAddress.lng}/>
+      </div>
+
+      
         </div>
     )
 }

@@ -47,7 +47,7 @@ const SignUp = () => {
         if(isLogedIn){
             history.push('/');
         }
-    }, [isLogedIn])
+    }, [isLogedIn, history])
 
     function handleChange(e) {
         const {name, value} = e.target;
