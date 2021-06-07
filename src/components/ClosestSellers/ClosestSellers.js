@@ -1,9 +1,13 @@
 import {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
+import {getNearestUsers, userSelector} from "../../store/slices/userSlice";
 import Map from '../Map/Map';
 
 const ClosestSellers = () => {
 
+    const dispatch = useDispatch();
+    const {userData, nearestUsers} = useSelector(userSelector)
     const [formData, setFormData] = useState({
         miles: '0',
     })
@@ -15,12 +19,22 @@ const ClosestSellers = () => {
         setFormData(data => ({...data, [name]: value}))
     }
     
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        formData.lat = userData.lat
+        formData.lng = userData.lng
+        dispatch(getNearestUsers(formData))
+    }
+
+    console.log(nearestUsers)
 
     return (
         <div>
         <div className="flex justify-center">
             
-            <form className=" flex justify-between p-3 w-2/5 shadow-md rounded-lg" >
+            <form
+            onSubmit={handleSubmit}
+            className=" flex justify-between p-3 w-2/5 shadow-md rounded-lg" >
                 <div>
                     <h1 className="text-lg font-semibold">Find Sellers in Radius</h1>
                     <label className='m-2' htmlFor='miles'>Miles: {formData.miles}</label>

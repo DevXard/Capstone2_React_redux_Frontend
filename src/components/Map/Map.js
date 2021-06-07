@@ -13,8 +13,8 @@ const MapContainer = (props) => {
     const {REACT_APP_GOOGLE_API} = process.env
 
     const [position, setPosition] =useState({
-        lat: 39.11353086610253,
-        lng: -77.54374506933923
+        lat: 39.0379233,
+        lng: -77.47559618009544
     })
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const MapContainer = (props) => {
    
     return (
         <LoadScript
-        googleMapsApiKey={`${REACT_APP_GOOGLE_API}`}
+        googleMapsApiKey={`AIzaSyDBf8Y0r_933bowpXFNCo3dpjnnQSEmtuM`}
         >
         <GoogleMap 
         mapContainerStyle={containerStyle}

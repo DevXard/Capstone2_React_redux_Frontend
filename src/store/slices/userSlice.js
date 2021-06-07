@@ -105,8 +105,18 @@ export const refreshToken = createAsyncThunk(
     }
 )
 
+export const getNearestUsers = createAsyncThunk(
+    `user/getNearestUsers`,
+    async (data, thunkAPI) => {
+        
+        const res = await API.getClosesUsers(data)
+        return res.addresses
+    }
+)
+
 const initialState = {
     userData: {},
+    nearestUsers: [],
     token: '',
     isLoading: false,
     isLogedIn: false,
@@ -201,6 +211,9 @@ export const userSlice = createSlice({
             state.token = '';
             
     
+        },
+        [getNearestUsers.fulfilled]: (state, action) => {
+            state.nearestUsers = action.payload;
         }
     }
 })
