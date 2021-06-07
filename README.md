@@ -68,7 +68,7 @@
 
 ### Schema
 
-![Schema Image](https://drive.google.com/file/d/1VkDb0RS5buqJh_BYOg-XBWqY6KIlo-ka/view?usp=sharing)
+![image info](./public/Screenshot_6.png)
 
 # Expected difficulties
 
@@ -78,7 +78,11 @@
 
 # Security
 
-> To be able to sell or buy an acount will be needed
+> Security will use bcrypt on the backend to encript passwords
+> Front end will have an JWT token held in memory
+> Refresh token will be used to refresh the main token and it will be
+> held in cookies as HTTPOnly cookie for security purposes.
+> On expiration Bouth tokens will be refreshed
 
 # Functionaliry
 
