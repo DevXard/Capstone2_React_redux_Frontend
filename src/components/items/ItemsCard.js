@@ -10,7 +10,7 @@ const ItemsCard = ({item}) => {
     
     return (
         <div class="bg-gray-100 rounded-xl p-8 m-4 md:p-0 w-60 h-96 shadow-lg border border-gray-200">
-            <Link to={`details/${item.id}`}>
+            <Link to={`/details/${item.id}`}>
             <img class="w-full p-2 h-44 rounded-xl" 
             src="https://c8.alamy.com/comp/T58125/selection-of-fruit-and-vegetables-on-white-background-T58125.jpg" alt="Generic"/>
             </Link>

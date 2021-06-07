@@ -17,8 +17,12 @@ const UserDetails = () => {
 
     },[dispatch])
 
+    if(!foundUser.user) {
+        return <div>Loading</div>
+    }
+
     const {user, items} = foundUser
-    console.log(user)
+    
     return(
         <div>
         <div className="flex justify-center mb-8">
