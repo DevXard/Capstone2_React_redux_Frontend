@@ -121,6 +121,10 @@ class Api {
 
         return res
     }
+    static async getClosesUsers(data){
+        const res = await this.request(`address/rad`, data)
+        return res
+    }
 }
 
 export default Api;

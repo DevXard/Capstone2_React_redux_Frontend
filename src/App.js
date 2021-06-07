@@ -9,6 +9,7 @@ import Nav from './components/Nav/Nav';
 import DetailsPage from './components/Details/DetailsPage';
 import Cart from './components/Cart/Cart';
 import Orders from './components/Orders/Orders';
+import ClosestSellers from './components/ClosestSellers/ClosestSellers';
 import Map from './components/Map/Map';
 import Profile from './components/Profile/Profile';
 import AddItem from './components/AddItem/AddItem';
@@ -69,6 +70,9 @@ function App() {
         </Route>
         <Route exact path="/map" >
           <Map />
+        </Route>
+        <Route exact path="/closeseller" >
+          <ClosestSellers />
         </Route>
       </Switch>
       
