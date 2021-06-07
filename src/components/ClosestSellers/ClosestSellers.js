@@ -61,11 +61,11 @@ const ClosestSellers = () => {
             </div>
             
         </div>
-        <div className=" flex justify-center mt-8 ">
-        <h1 className="text-lg font-bold">Sellers</h1>  
+        <div className="  mt-8 ">
+        <h1 className="text-lg text-center my-5 font-bold">Sellers</h1>  
             <div className=" flex justify-center w-3/5 ">
                 
-                {nearestUsers.map(data => <SellerCard data={data} />)}
+                {nearestUsers.map(data => <SellerCard key={data.uid} data={data} />)}
             </div>
         </div>
         

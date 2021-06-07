@@ -114,9 +114,19 @@ export const getNearestUsers = createAsyncThunk(
     }
 )
 
+export const getUser = createAsyncThunk(
+    `user/getUser`,
+    async (id, thunkAPI) => {
+        
+        const res = await API.getUserById(id)
+        return res.user
+    }
+)
+
 const initialState = {
     userData: {},
     nearestUsers: [],
+    foundUser: {},
     token: '',
     isLoading: false,
     isLogedIn: false,
@@ -214,6 +224,9 @@ export const userSlice = createSlice({
         },
         [getNearestUsers.fulfilled]: (state, action) => {
             state.nearestUsers = action.payload;
+        },
+        [getUser.fulfilled]: (state, action) => {
+            state.foundUser = action.payload;
         }
     }
 })

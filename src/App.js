@@ -13,6 +13,7 @@ import ClosestSellers from './components/ClosestSellers/ClosestSellers';
 import Map from './components/Map/Map';
 import Profile from './components/Profile/Profile';
 import AddItem from './components/AddItem/AddItem';
+import UserDetails from './components/User/UserDetails';
 import SignUp from './components/SignUp/SignUp';
 import Login from './components/LogIn/LogIn';
 import API from './api';
@@ -73,6 +74,9 @@ function App() {
         </Route>
         <Route exact path="/closeseller" >
           <ClosestSellers />
+        </Route>
+        <Route exact path="/user/:id" >
+          <UserDetails />
         </Route>
       </Switch>
       

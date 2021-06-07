@@ -47,6 +47,13 @@ class Api {
         return res.user
     }
 
+    static async getUserById(id) {
+        
+        let res = await this.request(`user/useritems/${id}`)
+        
+        return res
+    }
+
     /* Items */
     /***************************************************************************/
     static async getItems(){
