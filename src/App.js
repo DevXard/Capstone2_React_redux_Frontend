@@ -34,15 +34,13 @@ function App() {
     
   },[isExpired, dispatch]);
 
-  function test() {
-    console.log()
-  }
+  
 
   return (
     <>
     <BrowserRouter>
       <Nav />
-      <button onClick={test} >Test</button>
+      
       <Switch >
         <Route exact path="/">
           <SearchBar />

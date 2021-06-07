@@ -2,7 +2,15 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
 import API from '../../api'; 
 
-
+/* 
+    Registers a user
+    Checks for error message
+    Sets toke to API class
+    Retreaves username from JWT token
+    Gets user by username from server
+    returns an object with Token, UserData and LogedIn (to tell redux everything was succesfull)
+    Sets all required state to redux
+ */
 export const signupUser = createAsyncThunk(
     'user/signupUser',
     async (data, thunkAPI) => {
@@ -10,7 +18,7 @@ export const signupUser = createAsyncThunk(
             const res = await API.registerUser(data)
             console.log(res.message)
             if(res.message){
-                console.log("YES")
+                
                 return res
             }
             API.setToken(res.data.token)
@@ -25,15 +33,15 @@ export const signupUser = createAsyncThunk(
     }
 )
 
-/*
-    Accepts {Username, Password}
-
-    Returns {token}
-
-    Set API.token to {token}
-
-    Stores token in redux
-*/
+/* 
+    Logs In a user
+    Checks for error message
+    Sets toke to API class
+    Retreaves username from JWT token
+    Gets user by username from server
+    returns an object with Token, UserData and LogedIn (to tell redux everything was succesfull)
+    Sets all required state to redux
+ */
 
 export const loginUser = createAsyncThunk(
     'user/loginUser',
@@ -78,7 +86,17 @@ export const logOutUser = createAsyncThunk(
     }
 )
 
-/* Refresh Token */
+/* 
+    Refresh Token 
+
+    On refresh asks backend for new token
+
+    Sets new token to API.token
+
+    Decodes JWT and retreaves userData by username
+
+    Returns and sets state with userdata token and isLogedin
+*/
 
 export const refreshToken = createAsyncThunk(
     'user/refreshToken',
@@ -105,6 +123,12 @@ export const refreshToken = createAsyncThunk(
     }
 )
 
+/* 
+    Sends {lat, lng and Miles} to backend server
+
+    Servers responds with users in the radius of Miles 
+*/
+
 export const getNearestUsers = createAsyncThunk(
     `user/getNearestUsers`,
     async (data, thunkAPI) => {
@@ -113,6 +137,12 @@ export const getNearestUsers = createAsyncThunk(
         return res.addresses
     }
 )
+
+/*
+    Sends {id} to backend server
+
+    Returns User with ID requested
+*/
 
 export const getUser = createAsyncThunk(
     `user/getUser`,

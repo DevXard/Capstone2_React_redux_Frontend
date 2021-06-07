@@ -1,6 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import API from '../../api';
 
+/* Create a new order */
 export const registerOrder = createAsyncThunk(
     `orders/registerOrder`,
     async (data, order) => {
@@ -10,6 +11,7 @@ export const registerOrder = createAsyncThunk(
 
 )
 
+/* Gets all orders from perspective of buyer */
 export const buyOrders = createAsyncThunk(
     `orders/buyOrders`,
     async (id, order) => {
@@ -19,6 +21,7 @@ export const buyOrders = createAsyncThunk(
     }
 )
 
+/* Gets all orders from perspective of seller */
 export const sellOrders = createAsyncThunk(
     `orders/sellOrders`,
     async (id, order) => {

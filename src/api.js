@@ -23,6 +23,10 @@ class Api {
         }
     }
 
+    /*
+    Request specificly for AUTH 
+
+     */
     static async authRequest(endpoint, data){
         console.debug("API call:", endpoint, data);
         const url = `${BASE_URL}/${endpoint}`;
@@ -36,21 +40,21 @@ class Api {
         }
     }
     
-
+    /* Set token to class API */
     static async setToken(token) {
         this.token = token;
 
     }
-
+    /* Get User by username */
     static async getCurrentUser(username){
         let res = await this.request(`user/${username}`)
         return res.user
     }
 
+    /* Get User By Id */
     static async getUserById(id) {
         
         let res = await this.request(`user/useritems/${id}`)
-        
         return res
     }
 
@@ -116,6 +120,10 @@ class Api {
     /* Maps */
     /********************************************************************** */
 
+    /* 
+        This route get lng, lat coordinates for free
+        it is used to avoid googles paid gecoding api
+    */
     static async getAddressLocations(address){
         
         const res = await axios.get(`https://nominatim.openstreetmap.org/search?${address}&format=geojson`)

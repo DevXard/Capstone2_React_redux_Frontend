@@ -1,6 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import API from '../../api';
 
+/* Retreaves all items from backend */
 export const getAllItems = createAsyncThunk(
     `item/getAllItems`,
     async (thunkAPI) => {
@@ -9,6 +10,7 @@ export const getAllItems = createAsyncThunk(
     }
 )
 
+/* Adds item to database */
 export const addItem = createAsyncThunk(
     `item/addItem`,
     async (data, thunkAPI) => {
@@ -17,7 +19,7 @@ export const addItem = createAsyncThunk(
         return res
     }
 )
-
+/* Gets item by ID */
 export const getItem = createAsyncThunk(
     'item/getItem',
     async (id, thunkAPI) => {
@@ -26,6 +28,7 @@ export const getItem = createAsyncThunk(
     }
 )
 
+/* GET address of the owner of the item */
 export const getItemAddress = createAsyncThunk(
     `item/getItemAddress`,
     async (id, thunkAPI) => {
