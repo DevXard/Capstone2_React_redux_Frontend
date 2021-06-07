@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {getNearestUsers, userSelector} from "../../store/slices/userSlice";
 import Map from '../Map/Map';
+import SellerCard from './SellerCard';
 
 const ClosestSellers = () => {
 
@@ -60,8 +61,12 @@ const ClosestSellers = () => {
             </div>
             
         </div>
-        <div>
-            <h1 className="text-lg font-bold">Sellers</h1>
+        <div className=" flex justify-center mt-8 ">
+        <h1 className="text-lg font-bold">Sellers</h1>  
+            <div className=" flex justify-center w-3/5 ">
+                
+                {nearestUsers.map(data => <SellerCard data={data} />)}
+            </div>
         </div>
         
         </div>

@@ -27,7 +27,7 @@ const MapContainer = (props) => {
    
     return (
         <LoadScript
-        googleMapsApiKey={`AIzaSyDBf8Y0r_933bowpXFNCo3dpjnnQSEmtuM`}
+        googleMapsApiKey={`${REACT_APP_GOOGLE_API}`}
         >
         <GoogleMap 
         mapContainerStyle={containerStyle}
