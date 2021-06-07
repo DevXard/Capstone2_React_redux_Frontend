@@ -68,7 +68,7 @@
 
 ### Schema
 
-![Schema Image](https://prnt.sc/14kfquf)
+![Schema Image](https://drive.google.com/file/d/1VkDb0RS5buqJh_BYOg-XBWqY6KIlo-ka/view?usp=sharing)
 
 # Expected difficulties
 
