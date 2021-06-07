@@ -15,7 +15,7 @@ const UserDetails = () => {
     useEffect(() => {
         dispatch(getUser(id))
 
-    },[dispatch])
+    },[dispatch, id])
 
     if(!foundUser.user) {
         return <div>Loading</div>

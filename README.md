@@ -4,10 +4,21 @@
 * Node.js
 * Express
 * PostgreSQL
+* JsonWebToken
+* bcrypt
+* cors
+* cookie-parser
+* Node pg
 
 ## Frontend
 * React.js
-* Redux
+* Redux / ReduxToolkit
+* Axios
+* React Router Dom
+* JsonWebToken
+* Universal Cookies
+* TailwindCSS
+* react-google-maps
 
 # Type Of Application
 
@@ -46,14 +57,14 @@
 * Password
 * address
 * location (long, lat)
-* revews
+
 
 ### Products Data
 * type 
 * quantity
 * date
 * price
-* delivery avalible
+
 
 # API
 
@@ -61,8 +72,12 @@
 > Using google maps i will load closest sellers of certin
 > 
 > product in x miles/km. 
-
-> Using Google maps will get long lat from sellers addres
+>
+> Using Nominatim maps will get long lat from sellers addres for free
+> and avoid google paid geocoding api
+> 
+> Google maps will be used in multiple components. to give information Of
+> product or user location
 
 # Database
 
@@ -72,9 +87,11 @@
 
 # Expected difficulties
 
+### Nominatim Api
+* Getting turning adresses into long lat coordinates
+
 ### Google Api
-* Getting coordinates from address
-* Loading long lat in to google maps
+* Loading markers in to google maps using long lat 
 
 # Security
 
@@ -87,8 +104,12 @@
 # Functionaliry
 
 * Show buyers closest sellers and there Products
-* ability to search for products and get the closest on top
-* Ability to become a seller get notified when you get a purchese
+* ability to search for products
+* Ability to become a seller 
+* Abiliti to create orders
+* Ability to vew orders as a seller
+* Ability to vew orders as a buyer
+* Adding items to sell
 
 # User flow
 

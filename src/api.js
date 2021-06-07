@@ -75,6 +75,11 @@ class Api {
         return res
     }
 
+    static async getItemByName(name) {
+        let res = await this.request(`items/name/${name}`)
+        return res
+    }
+
 
         /* AUTH Calls */
     /* ********************************************************************** */

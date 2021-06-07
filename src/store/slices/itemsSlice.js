@@ -37,6 +37,14 @@ export const getItemAddress = createAsyncThunk(
     }
 )
 
+export const getItemByName = createAsyncThunk(
+    `item/getItemByName`,
+    async (name, thunkAPI) => {
+        const res = await API.getItemByName(name)
+        return res.item
+    }
+)
+
 const initialState = {
     loading: false,
     items: [],
@@ -59,6 +67,9 @@ const itemsSlice = createSlice({
         },
         [getItemAddress.fulfilled]: (state, action) => {
             state.itemAddress = {...action.payload}
+        },
+        [getItemByName.fulfilled]: (state, action) => {
+            state.items = [...action.payload]
         }
         
     }
