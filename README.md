@@ -68,6 +68,8 @@
 
 ### Schema
 
+![Schema Image](https://prnt.sc/14kfquf)
+
 # Expected difficulties
 
 ### Google Api
