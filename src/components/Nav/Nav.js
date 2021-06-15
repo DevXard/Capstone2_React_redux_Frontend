@@ -76,7 +76,7 @@ const Nav = () => {
                         <div>
                             <Link to="/profile" className="text-white mx-2">Profile</Link>
                             <Link to="/cart" className="text-white mx-2">Cart</Link>
-                            <Link to="/map" className="text-white mx-2">Map</Link>
+                            
                             <Link to="/closeseller" className="text-white mx-2">Nearest Sellers</Link>
                             {isSeller()}
                             

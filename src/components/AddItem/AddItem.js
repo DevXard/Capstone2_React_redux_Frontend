@@ -93,13 +93,6 @@ const AddItem = () => {
                         </Link>
                     </div>
                 </div>
-
-                <div className="text-grey-dark mt-6">
-                    Already have an account? 
-                    <Link className="no-underline border-b border-blue text-blue mx-1" to="../login/">
-                        Log in
-                    </Link>.
-                </div>
             </div>
         </div>
     )

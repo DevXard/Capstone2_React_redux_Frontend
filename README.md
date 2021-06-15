@@ -1,3 +1,14 @@
+# Compleated Images
+
+![image info](./public/Screenshot_7.png)
+![image info](./public/Screenshot_8.png)
+![image info](./public/Screenshot_8.png)
+![image info](./public/Screenshot_9.png)
+![image info](./public/Screenshot_10.png)
+![image info](./public/Screenshot_12.png)
+![image info](./public/Screenshot_11.png)
+
+
 # Technologies
 
 ## Backend
